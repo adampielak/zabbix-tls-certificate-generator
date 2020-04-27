@@ -1,0 +1,29 @@
+[ ca ]
+default_ca = myca
+
+[ crl_ext ]
+issuerAltName=issuer:copy
+authorityKeyIdentifier=keyid:always
+
+[ myca ]
+dir = ./
+new_certs_dir = $dir
+unique_subject = no
+certificate = $dir/interca.crt
+database = $dir/interca_certindex
+private_key = $dir/interca.key
+serial = $dir/interca_certserial
+default_days = 730
+default_md = sha256
+policy = myca_policy
+crlnumber = $dir/interca_crlnumber
+default_crl_days = 730
+
+[ myca_policy ]
+commonName = supplied
+stateOrProvinceName = supplied
+countryName = optional
+emailAddress = optional
+organizationName = supplied
+organizationalUnitName = optional
+
